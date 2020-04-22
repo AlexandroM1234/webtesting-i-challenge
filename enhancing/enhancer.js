@@ -5,18 +5,21 @@ module.exports = {
   get,
 };
 
-function succeed({ name, enhancement, durability }) {
-  if (enhancement === 20) {
-    return enhancement;
-  } else if (enhancement < 20) {
-    return enhancement + 1;
+function succeed(name, enhancement, durability) {
+  let newItem = { name, enhancement, durability };
+  if (enhancement < 20) {
+    return { enhancement: enhancement + 1 };
+  } else if (enhancement === 20) {
+    return { enhancement };
   }
 
-  const newItem = { name, enhancement: enhancement + 1, durability };
+  if (enhancement > 20) {
+    console.log("enhancement can't be greater than 20");
+  }
   return newItem;
 }
 
-function fail(item) {
+function get(item) {
   return { ...item };
 }
 
@@ -25,6 +28,16 @@ function repair(item) {
   return newItem;
 }
 
-function get(item) {
-  return { ...item };
+function fail({ name, enhancement, durability }) {
+  let newItem = { name, enhancement, durability };
+
+  if (enhancement < 15) {
+    return { durability: durability - 5 };
+  } else if (enhancement > 16) {
+    return { durability: durability - 1 };
+  } else if (enhancement >= 15) {
+    return { durability: durability - 10 };
+  }
+
+  return newItem;
 }

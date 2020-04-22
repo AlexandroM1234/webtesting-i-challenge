@@ -1,4 +1,4 @@
-const { succeed, fail, repair, get } = require("./enhancer.js");
+const { succeed, fail, repair } = require("./enhancer.js");
 // test away!
 describe("enhancer.js tests", () => {
   test("should run without errors", () => {
@@ -14,12 +14,16 @@ describe("enhancer.js tests", () => {
   });
 
   test("testing succeed method", () => {
+    expect(succeed("Bob", 17, 50)).toEqual({
+      enhancement: 18,
+    });
+  });
+
+  test("testing fail method ", () => {
     expect(
-      succeed({ name: "Alex", enhancement: 20, durability: 10 })
-    ).toStrictEqual({
-      name: "Alex",
-      enhancement: 19,
-      durability: 10,
+      fail({ name: "Bob", enhancement: 15, durability: 19 })
+    ).toMatchObject({
+      durability: 9,
     });
   });
 
