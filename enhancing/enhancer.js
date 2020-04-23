@@ -8,9 +8,9 @@ module.exports = {
 function succeed(name, enhancement, durability) {
   let newItem = { name, enhancement, durability };
   if (enhancement < 20) {
-    return { enhancement: enhancement + 1 };
+    return { ...newItem, enhancement: enhancement + 1 };
   } else if (enhancement === 20) {
-    return { enhancement };
+    return newItem;
   }
 
   if (enhancement > 20) {

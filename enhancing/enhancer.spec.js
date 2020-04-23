@@ -15,7 +15,9 @@ describe("enhancer.js tests", () => {
 
   test("testing succeed method", () => {
     expect(succeed("Bob", 17, 50)).toEqual({
+      name: "Bob",
       enhancement: 18,
+      durability: 50,
     });
   });
 
